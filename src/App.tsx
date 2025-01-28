@@ -1,34 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex h-full">
+      <div className="w-full mx-4">
+        <div className="max-w-[700px] mx-auto flex flex-col justify-between h-full py-16">
+          <div className="flex flex-col gap-32">
+            <div className="flex justify-between">
+              <img src="img/trio-logo.svg" alt="" />
+            </div>
+            <div>
+              <h1 className="text-body-light text-[50px] font-bold leading-[60px]">
+                Todos os pagamentos no alcance das suas mãos.
+              </h1>
+              <p className="mb-[60px] mt-8 text-neutral-500 text-[24px] font-normal leading-7">
+                Seja bem-vindo(a) à Trio: líder de mercado em alto volume de transações corporativas ágeis, livres de erros e conciliadas de ponta-a-ponta.
+              </p>
+
+              <button className="bg-primary text-white px-4 py-2 rounded cursor-pointer">
+                Abrir Conta
+              </button>
+            </div>
+          </div>
+
+          <p className="text-neutral-500 font-normal">Ao registrar sua empresa, você concorda com nossa <span className="underline font-semibold cursor-pointer">política de privacidade</span> e aceita os <span className="underline font-semibold cursor-pointer">termos de uso</span>.</p>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <div className="w-full bg-[url(/img/kyc-first-step.png)] bg-no-repeat bg-cover hidden lg:flex"></div>
+    </div>
   )
 }
 

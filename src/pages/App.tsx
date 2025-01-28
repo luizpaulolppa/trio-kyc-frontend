@@ -1,4 +1,14 @@
+import { useTranslation } from "react-i18next";
+
 function App() {
+  const { t, i18n } = useTranslation();
+
+  function handleChangeLanguage() {
+    const language = i18n.language === 'en' ? 'pt' : 'en'
+    localStorage.setItem("i18n", language)
+    i18n.changeLanguage(language)
+  }
+
   return (
     <div className="flex h-full">
       <div className="w-full mx-4">
@@ -9,13 +19,16 @@ function App() {
             </div>
             <div>
               <h1 className="text-body-light text-[50px] font-bold leading-[60px]">
-                Todos os pagamentos no alcance das suas mãos.
+                {t('Todos os pagamentos no alcance das suas mãos.')}
               </h1>
               <p className="mb-[60px] mt-8 text-neutral-500 text-[24px] font-normal leading-7">
-                Seja bem-vindo(a) à Trio: líder de mercado em alto volume de transações corporativas ágeis, livres de erros e conciliadas de ponta-a-ponta.
+                {t('Seja bem-vindo(a) à Trio: líder de mercado em alto volume de transações corporativas ágeis, livres de erros e conciliadas de ponta-a-ponta.')}
               </p>
 
-              <button className="bg-primary text-white px-4 py-2 rounded cursor-pointer">
+              <button
+                className="bg-primary text-white px-4 py-2 rounded cursor-pointer"
+                onClick={handleChangeLanguage}
+              >
                 Abrir Conta
               </button>
             </div>

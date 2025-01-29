@@ -13,4 +13,8 @@ body,
 
 @theme {
   --color-primary: #15294B;
+  --color-green-step: #EAF1E2;
+  --color-neutral-90: #8993A4;
+  --color-neutral-85: #a8b2c3;
+  --color-neutral-80: #F1F4F9;
 }

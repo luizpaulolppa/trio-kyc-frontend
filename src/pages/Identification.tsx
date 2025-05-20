@@ -3,10 +3,32 @@ import { Button } from "../components/Button";
 import { useNavigate } from "react-router";
 import { Input } from "../components/Input";
 import { InputPhoneNumber } from "../components/InputPhoneNumber";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
+
+type InitialFormData = {
+  name: string,
+  email: string,
+  phone: string
+}
 
 export default function Identification() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+
+  const initialFormData: InitialFormData = {
+    name: "Luiz Paulo",
+    email: "luiz.pilegi@trio.com.br",
+    phone: "+5541999381724"
+  }
+
+  const [data, formAction] = useActionState(submitForm, initialFormData)
+  const { pending } = useFormStatus()
+
+  function submitForm(prevState: InitialFormData, formData: FormData): InitialFormData {
+    const name = formData.get("fullname")
+    return { email: "", name: "", phone: "" }
+  }
 
   function handleNextStep() {
 
@@ -24,7 +46,7 @@ export default function Identification() {
             <div className="flex justify-between">
               <img src="img/trio-logo.svg" alt="" />
             </div>
-            <form>
+            <form action={formAction}>
               <h1 className="text-body-light text-[50px] font-bold leading-[60px]">
                 {t('Olá! Vamos começar?')}
               </h1>
@@ -33,14 +55,14 @@ export default function Identification() {
               </p>
 
               <div className="flex flex-col gap-4 mt-16 mb-12">
-                <Input required type="text" placeholder="Insira seu nome" />
-                <Input required type="text" placeholder="Insira seu e-mail corporativo" />
-                <InputPhoneNumber required />
+                <Input type="text" value={data.name} placeholder="Insira seu nome" name="fullname" required />
+                <Input type="text" value={data.email} placeholder="Insira seu e-mail corporativo" name="email" required />
+                <InputPhoneNumber required name="phone" />
               </div>
 
               <div className="flex justify-between">
                 <Button onClick={handleBackStep} color="secondary">Voltar</Button>
-                <Button onClick={handleNextStep} type="submit">Continuar</Button>
+                <Button onClick={handleNextStep} type="submit" disabled={pending}>Continuar</Button>
               </div>
             </form>
           </div>

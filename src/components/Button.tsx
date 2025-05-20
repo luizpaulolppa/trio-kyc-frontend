@@ -3,6 +3,7 @@ import { tv } from 'tailwind-variants';
 type Props = {
   children: React.ReactNode
   onClick?: () => void
+  disabled?: boolean
   color?: "primary" | "secondary"
   type?: "button" | "submit" | "reset"
 }
@@ -17,12 +18,13 @@ const button = tv({
   }
 })
 
-export function Button({ children, onClick, color = "primary", type = "button" }: Props) {
+export function Button({ children, disabled, onClick, color = "primary", type = "button" }: Props) {
   return (
     <button
       className={button({ color })}
       onClick={onClick}
       type={type}
+      disabled={disabled}
     >
       {children}
     </button>
